@@ -1,3 +1,4 @@
+import sys
 import sounddevice as sd
 import wave
 import queue
@@ -43,7 +44,7 @@ def start_hotkey_listener(icon_ref):
         toggle_recording(icon_ref)
 
     with keyboard.GlobalHotKeys({
-        '<ctrl>+<shift>+z': on_activate
+        '<ctrl>+<f4>': on_activate
     }) as h:
         h.join()
 
@@ -112,7 +113,10 @@ def type_text(text):
 # Распознавание через whisper.cpp
 def transcribe(filename):
     cmd = [WHISPER_PATH, '-m', MODEL_PATH, '-f', filename, '-otxt', '-l', 'ru']
-    subprocess.run(cmd, stdout=subprocess.PIPE)
+    creationflags = 0
+    if sys.platform == "win32":
+        creationflags = subprocess.CREATE_NO_WINDOW
+    subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, creationflags=creationflags)
     txt_file = filename + '.txt'
     if os.path.exists(txt_file):
         with open(txt_file, 'r', encoding='utf-8') as f:
