@@ -56,12 +56,12 @@ def toggle_recording(icon_obj=None):
     if recording:
         if icon: icon.icon = create_icon('recording')
         play_notification("notice.mp3")
-        print("🎙 Запись началась")
+        # print("🎙 Запись началась")
         threading.Thread(target=start_recording).start()
     else:
         if icon: icon.icon = create_icon('idle')
         play_notification("notice.mp3")
-        print("🛑 Запись остановлена")
+        # print("🛑 Запись остановлена")
         threading.Thread(target=stop_recording_and_process).start()
 
 
@@ -75,12 +75,12 @@ def start_recording():
     audio_q.queue.clear()
     stream = sd.InputStream(samplerate=samplerate, channels=channels, dtype='int16', callback=audio_callback)
     stream.start()
-    print("🎙 Запись начата")
+    # print("🎙 Запись начата")
 
 
 def stop_recording_and_process():
     global stream
-    print("🛑 Остановка записи")
+    # print("🛑 Остановка записи")
     if stream:
         stream.stop()
         stream.close()
@@ -96,7 +96,7 @@ def stop_recording_and_process():
         while not audio_q.empty():
             wf.writeframes(audio_q.get())
 
-    print(f"💾 Записано в файл: {path}")
+    # print(f"💾 Записано в файл: {path}")
     text = transcribe(path)
     if text:
         type_text(text)
@@ -121,7 +121,7 @@ def transcribe(filename):
     if os.path.exists(txt_file):
         with open(txt_file, 'r', encoding='utf-8') as f:
             text = re.sub(r"\[.*\]", "", f.read().strip()) 
-            print(f"📝 Распознано: {text}")
+            # print(f"📝 Распознано: {text}")
             return text
     return ""
 
