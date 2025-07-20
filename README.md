@@ -46,3 +46,6 @@ Then the `dist/` directory can be copied to any convenient location on the compu
 
 ## 🔊 Sound notifications
 The notification signal can be replaced by replacing the `dist/notice.mp3` file, provided that the name is preserved.
+
+---
+[LICENSE](LICENSE)
