@@ -1,49 +1,48 @@
-# sound-to-text — голосовой ввод с Whisper.cpp
-sound-to-text — локальное Windows-приложение для распознавания речи и имитации текстового ввода. Работает на базе [whisper.cpp](https://github.com/ggml-org/whisper.cpp), использует горячие клавиши для активации записи, отображает статус в системном трее и обеспечивает полную автономность без подключения к интернету.
+# sound-to-text — voice input with Whisper.cpp
+sound-to-text — a local Windows application for speech recognition and text input simulation. It works on the basis of [whisper.cpp](https://github.com/ggml-org/whisper.cpp), uses hotkeys to activate recording, displays the status in the system tray and provides complete autonomy without an Internet connection.
 
 ---
 
-## 📦 Возможности
-- Голосовой ввод текста через микрофон
-- Локальное распознавание речи (без интернет-соединения)
-- Поддержка горячих клавиш начала и остановки записи (`Ctrl + F4`)
-- Индикация состояния записи в трее
-- Звуковое уведомление о начале и завершении записи
-- Работа в фоновом режиме
+## 📦 Features
+- Voice text input via microphone
+- Local speech recognition (without internet connection)
+- Support for hotkeys to start and stop recording (`Ctrl + F4`)
+- Recording status indication in the tray
+- Sound notification about the start and end of recording
+- Work in the background
 
 ---
 
-## 🚀 Установка и запуск
-Развернуть окружение (Python 3.9)
+## 🚀 Installation and launch
+Deploy the environment (Python 3.9)
 ```bash
 py -3.9 -m venv venv
 venv/scripts/activate
 ```
 
-Установить зависимости:
+Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-Выполнить сборку `stt.exe`
+Build `stt.exe`
 ```bash
 pyinstaller --onefile --noconsole main.py -n stt.exe
 ```
 
-`stt.exe` будет собран в каталоге `dist/`, где уже лежат файлы модели, звука уведомления и бинарник `whisper.cpp`.
-Затем каталог `dist/` можно скопировать в любое удобное место на компьютере и создать ярлык на `cpp.exe` в папке автозагрузки для запуска со стартом Windows.
+`stt.exe` will be built in the `dist/` directory, where the files are already located models, notification sounds and the `whisper.cpp` binary.
 
-
----
-
-## ▶ Использование
-1. Запустить `stt.exe`
-2. Иконка появится в трее
-3. Нажать `Ctrl + F4` для начала/остановки записи
-4. Распознанный текст будет автоматически введён в активное окно
+Then the `dist/` directory can be copied to any convenient location on the computer and a shortcut to `cpp.exe` can be created in the startup folder to run with Windows startup.
 
 ---
 
-## 🔊 Звуковые уведомления
-Сигнал уведомления можно заменить, подменив файл `dist/notice.mp3` при условии сохранения названия.
+## ▶ Usage
+1. Run `stt.exe`
+2. The icon will appear in the tray
+3. Press `Ctrl + F4` to start/stop recording
+4. The recognized text will be automatically entered into the active window
 
+---
+
+## 🔊 Sound notifications
+The notification signal can be replaced by replacing the `dist/notice.mp3` file, provided that the name is preserved.
